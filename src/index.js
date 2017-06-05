@@ -16,7 +16,8 @@ class App extends Component {
 			selectedVideo: null
 		};
     this.videoSearch('surfboards');
-  }
+    this.onVideoSelect = this.onVideoSelect.bind(this);
+	}
 
 	videoSearch(term) {
 		YTSearch({key: API_KEY, term: term}, (anydata) => {
@@ -26,17 +27,19 @@ class App extends Component {
 			});
 		});
 	}
-  
-	render() {
-		return (
-		  <div>
-		  	<SearchBar onSearchChange={term => this.videoSearch(term)} />
-		  	<VideoDetail video={this.state.selectedVideo} />
-		  	<VideoList
-          onVideoSelect={selectedVideo => this.setState({selectedVideo}) }
-          videos={this.state.videos} />
-		  </div>
-		);
+	onVideoSelect(selectedVideo) {
+		this.setState ({
+			selectedVideo: selectedVideo
+		})
 	}
+  render() {
+    return (
+      <div>
+        <SearchBar onSearchChange={term => this.videoSearch(term)} />
+        <VideoDetail video={this.state.selectedVideo} />
+        <VideoList onVideoSelect={this.onVideoSelect} videos={this.state.videos} />
+      </div>
+    );
+  }
 }
 ReactDOM.render(<App / >, document.getElementById('root'));
