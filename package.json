@@ -2,10 +2,13 @@
   "name": "designer-news",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://sraksh.github.io/react-youtube-app",
+  "gh-pages": "^1.0.0",
   "devDependencies": {
     "react-scripts": "0.6.1"
   },
   "dependencies": {
+    "gh-pages": "^1.0.0",
     "lodash": "^4.17.4",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
@@ -13,7 +16,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "predeploy": "react-scripts build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
